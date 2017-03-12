@@ -1,0 +1,38 @@
+<!--<div layout-gt-md="row">
+  <panel-widget flex title="Site visitors" template="app/views/partials/visitors.html" class="fixed-height-widget"></panel-widget>
+  <panel-widget flex title="Warnings" template="app/views/partials/warnings.html" class="fixed-height-widget"></panel-widget>
+  <panel-widget flex title="Memory load" template="app/views/partials/memory.html" class="fixed-height-widget"></panel-widget>
+</div>-->
+
+<div class="row" ng-controller="LatestPurchasesController">
+    <div class="col-md-4" ng-repeat="purchase in vm.purchases">
+        <section layout-margin class="md-whiteframe-z1 panel-widget">
+            <h class="pull-right" style="margin: 0;font-size: smaller">#{{purchase.purchase_id}}</h>
+            <br>
+            <div style="text-align: center"><h5 style="font-weight: 700; font-size: large"><i class="fa fa-home" aria-hidden="true"></i> {{purchase.retailer}}</h5></div>
+            <div class="row">
+                <div class="col-md-6" style="padding: 0"><h ><i class="fa fa-gbp" aria-hidden="true"></i> {{purchase.total_value}}</h></div>
+                <div class="col-md-6" style="padding: 0"> <h class="pull-right"><i class="fa fa-calendar-o" aria-hidden="true"></i> {{purchase.purchase_date.day_of_month}}-{{purchase.purchase_date.month_of_year}}-{{purchase.purchase_date.year}}</h></div>
+
+                <div class="row" style="text-align: center">
+                    <div class="col-md-12" style="padding: 8px 8px 0;" ui-sref="home.purchase({id:purchase.purchase_id})">
+                        <div class="btn" style="width: 100%" >
+                            More details
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!--<div layout-gt-md="row">
+  <panel-widget flex title="Server Control Panel" template="app/views/partials/controlPanel.html" class="fixed-height-widget"></panel-widget>
+  <panel-widget flex title="Usage Stats" template="app/views/partials/usage.html" class="fixed-height-widget"></panel-widget>
+  <panel-widget flex title="Autocomplete Input" template="app/views/partials/autocomplete.html" options="true" class="fixed-height-widget"></panel-widget>
+</div>
+
+<div layout-gt-md="row">
+  <panel-widget flex title="Performance" template="app/views/partials/performance.html" options="true"></panel-widget>
+  <panel-widget flex title="TODO list" template="app/views/partials/checkboxes.html"></panel-widget>
+</div>-->

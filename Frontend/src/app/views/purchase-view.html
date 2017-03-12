@@ -1,0 +1,35 @@
+<div class="row" ng-controller="PurchaseController">
+    <div class="col-md-4" ng-repeat="product in vm.products">
+        <section layout-margin class="md-whiteframe-z1 panel-widget" style="min-height: 175px">
+            <h class="pull-right" style="margin: 0;font-size: smaller; ">#{{product.product_id}}</h>
+            <br>
+            <div style="text-align: center"><h5 style="font-weight: 700; font-size: large">{{product.title}}</h5></div>
+            <div class="row">
+                <div class="col-md-2" style="padding: 0"><h ><i class="fa fa-gbp" aria-hidden="true"></i> {{product.price}}</h></div>
+                <div class="col-md-4 pull-right" style="padding: 0; text-align: right"> <h ><i class="fa fa-copyright" aria-hidden="true"></i> {{product.brand}}</h></div>
+
+                <div class="row" style="text-align: center; margin-top: 25px" ng-if="!product.good_deal">
+                    <i class="fa fa-arrow-up" data-toggle="Too high" style="color: red; font-size: xx-large" aria-hidden="true"></i>
+                </div>
+
+                <div class="row" style="text-align: center; margin-top: 25px" ng-if="product.good_deal">
+                    <i class="fa fa-arrow-down" data-toggle="Too low" style="color: green; font-size: xx-large" aria-hidden="true"></i>
+                </div>
+
+                <div class="row" style="text-align: center" ng-if="!product.good_deal">
+                    <div class="col-md-6" style="padding: 8px;padding-bottom: 0" ui-sref="home.suggestions({title: product.title, price: product.price})">
+                        <div class="btn" style="width: 100%" >
+                            Check prices
+                        </div>
+                    </div>
+
+                    <div class="col-md-6" style="padding: 8px; padding-bottom: 0" ng-if="!product.good_deal" ng-click="vm.showTrend($event)">
+                        <div class="btn" style="width: 100%">
+                            Check trend
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

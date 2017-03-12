@@ -1,0 +1,117 @@
+Index: .idea/inspectionProfiles/Project_Default.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/inspectionProfiles/Project_Default.xml	(revision )
++++ .idea/inspectionProfiles/Project_Default.xml	(revision )
+@@ -0,0 +1,9 @@
++<component name="InspectionProjectProfileManager">
++  <profile version="1.0">
++    <option name="myName" value="Project Default" />
++    <inspection_tool class="LoggerInitializedWithForeignClass" enabled="false" level="WARNING" enabled_by_default="false">
++      <option name="loggerClassName" value="org.apache.log4j.Logger,org.slf4j.LoggerFactory,org.apache.commons.logging.LogFactory,java.util.logging.Logger" />
++      <option name="loggerFactoryMethodName" value="getLogger,getLogger,getLog,getLogger" />
++    </inspection_tool>
++  </profile>
++</component>
+\ No newline at end of file
+Index: .idea/inspectionProfiles/profiles_settings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/inspectionProfiles/profiles_settings.xml	(revision )
++++ .idea/inspectionProfiles/profiles_settings.xml	(revision )
+@@ -0,0 +1,7 @@
++<component name="InspectionProjectProfileManager">
++  <settings>
++    <option name="PROJECT_PROFILE" value="Project Default" />
++    <option name="USE_PROJECT_PROFILE" value="true" />
++    <version value="1.0" />
++  </settings>
++</component>
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/vcs.xml	(revision )
++++ .idea/vcs.xml	(revision )
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/jsLibraryMappings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/jsLibraryMappings.xml	(revision )
++++ .idea/jsLibraryMappings.xml	(revision )
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="JavaScriptLibraryMappings">
++    <file url="file://$PROJECT_DIR$" libraries="{Saveit/node_modules}" />
++  </component>
++</project>
+\ No newline at end of file
+Index: src/app/controllers/LatestPurchasesController.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/controllers/LatestPurchasesController.js	(revision 3eaeeb24865f5bb7c027b0a137024d267ee87844)
++++ src/app/controllers/LatestPurchasesController.js	(revision )
+@@ -2,12 +2,17 @@
+     angular
+         .module('app')
+         .controller('LatestPurchasesController', [
++            '$http',
+             LatestPurchasesController
+         ]);
+ 
+-    function LatestPurchasesController() {
++    function LatestPurchasesController($http) {
+         var vm = this;
+-
+-        console.log("mike");
++        $http.get("http://localhost:8090/purchase/purchase-id/1").then(function (data) {
++            console.log(data);
++        });
++        $http.get("http://localhost:8090/product/purchase-id/1").then(function (data) {
++            console.log(data);
++        });
+     }
+ })();
+Index: node_modules/.bin/node-sass
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- node_modules/.bin/node-sass	(revision 3eaeeb24865f5bb7c027b0a137024d267ee87844)
++++ node_modules/.bin/node-sass	(revision )
+@@ -1,1 +1,15 @@
+-../node-sass/bin/node-sass
+\ No newline at end of file
++#!/bin/sh
++basedir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
++
++case `uname` in
++    *CYGWIN*) basedir=`cygpath -w "$basedir"`;;
++esac
++
++if [ -x "$basedir/node" ]; then
++  "$basedir/node"  "$basedir/../node-sass/bin/node-sass" "$@"
++  ret=$?
++else 
++  node  "$basedir/../node-sass/bin/node-sass" "$@"
++  ret=$?
++fi
++exit $ret
